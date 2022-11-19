@@ -1,1 +1,4 @@
-@font-family: 'Poppins', sans-serif;
+@font-face {
+    font-family: Zabdilus;
+    src: url(assets/css/Zabdilus.ttf);
+}
