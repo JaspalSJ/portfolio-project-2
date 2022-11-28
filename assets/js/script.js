@@ -89,6 +89,34 @@ const startGame = () => {
     }, 1000);
 };
 
+/** Function to flip the cards */
+
+const flipCard = card => {
+    state.flippedCards++
+    state.totalFlips++
+
+    if (!state.gameStarted) {
+        startGame()
+    }
+
+    if (state.flippedCards <= 2) {
+        card.classList.add('flipped')
+    }
+
+    if (state.flippedCards === 2) {
+        const flippedCards = document.querySelectorAll('.flipped:not(.matched)')
+
+        if (flippedCards[0].innerText === flippedCards[1].innerText) {
+            flippedCards[0].classList.add('matched')
+            flippedCards[1].classList.add('matched')
+        }
+
+        setTimeout(() => {
+            flipBackCards()
+        }, 1000)
+    }
+}
+
 /** Event listeners for the cards and start button */
 
 const attachEventListeners = () => {
