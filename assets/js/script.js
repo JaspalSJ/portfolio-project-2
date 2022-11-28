@@ -75,21 +75,34 @@ const generateGame = () => {
     selectors.board.replaceWith(parser.querySelector('.board'));
 };
 
+/** Function to start game */
+
+const startGame = () => {
+    state.gameStarted = true;
+    selectors.start.classList.add('disabled');
+
+    state.loop = setInterval(() => {
+        state.totalTime++;
+
+        selectors.moves.innerText = `${state.totalFlips} moves`;
+        selectors.timer.innerText = `time: ${state.totalTime} sec`;
+    }, 1000);
+};
+
 /** Event listeners for the cards and start button */
 
 const attachEventListeners = () => {
     document.addEventListener('click', event => {
-        const eventTarget = event.target
-        const eventParent = eventTarget.parentElement
+        const eventTarget = event.target;
+        const eventParent = eventTarget.parentElement;
 
         if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
-            flipCard(eventParent)
+            flipCard(eventParent);
         } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
-            startGame()
+            startGame();
         }
-    })
-}
+    });
+};
 
-generateGame()
-attachEventListeners()
-
+generateGame();
+attachEventListeners();
