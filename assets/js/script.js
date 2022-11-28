@@ -74,3 +74,22 @@ const generateGame = () => {
 
     selectors.board.replaceWith(parser.querySelector('.board'));
 };
+
+/** Event listeners for the cards and start button */
+
+const attachEventListeners = () => {
+    document.addEventListener('click', event => {
+        const eventTarget = event.target
+        const eventParent = eventTarget.parentElement
+
+        if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
+            flipCard(eventParent)
+        } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
+            startGame()
+        }
+    })
+}
+
+generateGame()
+attachEventListeners()
+
