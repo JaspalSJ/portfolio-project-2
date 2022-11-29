@@ -89,6 +89,16 @@ const startGame = () => {
     }, 1000);
 };
 
+/** Function to flip back the cards */
+
+const flipBackCards = () => {
+    document.querySelectorAll('.card:not(.matched)').forEach(card => {
+        card.classList.remove('flipped')
+    })
+
+    state.flippedCards = 0
+}
+
 /** Function to flip the cards */
 
 const flipCard = card => {
