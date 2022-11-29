@@ -127,6 +127,23 @@ const flipCard = card => {
     }
 }
 
+/** Function to win the game if no more cards can be flipped */
+
+if (!document.querySelectorAll('.card:not(.flipped)').length) {
+    setTimeout(() => {
+        selectors.boardContainer.classList.add('flipped')
+        selectors.win.innerHTML = `
+            <span class="win-text">
+            You won!<br />
+            with <span class="highlight">${state.totalFlips}</span> moves<br />
+            under <span class="highlight">${state.totalTime}</span> seconds
+            </span>
+        `
+
+        clearInterval(state.loop)
+    }, 1000)
+}
+
 /** Event listeners for the cards and start button */
 
 const attachEventListeners = () => {
